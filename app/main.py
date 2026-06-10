@@ -17,6 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import accounts, contracts
 from app.store import store_summary
+from app.core.telemetry import setup_telemetry
 
 # --- Logging básico ---
 logging.basicConfig(
@@ -30,6 +31,8 @@ app = FastAPI(
     description="Simulador local del Core API de Thought Machine para desarrollo offline",
     version="1.0.0",
 )
+
+setup_telemetry(app, "vault-mock")
 
 # CORS middleware
 # Permite que el dashboard Angular (localhost:4200) consuma el Vault Mock
